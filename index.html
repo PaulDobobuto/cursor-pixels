@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://static-00.iconduck.com/assets.00/mouse-cursor-icon-2048x2048-4tptourf.png">
+    <title>Contador de Píxeles del Mouse</title>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-image: url('https://c0.wallpaperflare.com/preview/316/361/238/black-logitech-g-series-gaming-mouse-on-red-surface.jpg'); /* Reemplaza con la URL de tu imagen */
+            background-size: cover; /* Para cubrir toda la pantalla */
+            background-position: center; /* Centra la imagen */
+            background-repeat: no-repeat; /* Evita que se repita la imagen */
+        }
+        h1 {
+            font-size: 2em;
+            color:cornsilk
+        }
+        footer {
+            width: 98%; /* Ancho completo */
+            text-align: center; /* Centrar texto */
+            padding: 10px; /* Espaciado interno */
+           background-color: rgba(0, 0, 0, 0.7); /* Fondo del footer con opacidad */
+            color: white; /* Color del texto */
+            position: absolute; /* Posicionamiento absoluto */
+            bottom: 0; /* Fijar al fondo */
+        }
+    </style>
+</head>
+<body>
+    <h1>Píxeles recorridos por el mouse: <span id="pixelCount">0</span></h1>
+    <br>
+    <footer>
+    <p>© 2024 Paul Dobobuto.Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        let lastX = 0;
+        let lastY = 0;
+        let totalPixels = 0;
+
+        document.addEventListener('mousemove', (event) => {
+            if (lastX !== 0 && lastY !== 0) {
+                const deltaX = event.clientX - lastX;
+                const deltaY = event.clientY - lastY;
+                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                totalPixels += distance;
+                document.getElementById('pixelCount').innerText = Math.round(totalPixels);
+            }
+            lastX = event.clientX;
+            lastY = event.clientY;
+        });
+    </script>
+</body>
+</html>
